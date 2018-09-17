@@ -14,12 +14,45 @@ class Gateway extends AbstractGateway
     public function getDefaultParameters()
     {
         return [
+            'productionEndPoint' => '',
+            'sandboxEndPoint' => '',
             'SpecVersion'=>'',
             'XWebID' => '',
             'TerminalID' => '',
             'AuthKey' => '',
             'Industry'=>'',
+            'merchantCurrency'=>'',
         ];
+    }
+
+    public function getMerchantCurrency()
+    {
+        return $this->getParameter('merchantCurrency');
+    }
+
+    public function setMerchantCurrency($value)
+    {
+        return $this->setParameter('merchantCurrency', $value);
+    }
+
+    public function getSandboxEndPoint()
+    {
+        return $this->getParameter('sandboxEndPoint');
+    }
+
+    public function setSandboxEndPoint($value)
+    {
+        return $this->setParameter('sandboxEndPoint', $value);
+    }
+
+    public function getProductionEndPoint()
+    {
+        return $this->getParameter('productionEndPoint');
+    }
+
+    public function setProductionEndPoint($value)
+    {
+        return $this->setParameter('productionEndPoint', $value);
     }
 
     public function getSpecVersion()
@@ -80,6 +113,16 @@ class Gateway extends AbstractGateway
     public function deleteCard(array $parameters = array())
     {
         return $this->createRequest('\Omnipay\OpenEdge\Message\DeleteCardRequest', $parameters);
+    }
+
+    public function authorize(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\OpenEdge\Message\AuthorizeRequest', $parameters);
+    }
+
+    public function capture(array $parameters = array())
+    {
+        return $this->createRequest('\Omnipay\OpenEdge\Message\CaptureRequest', $parameters);
     }
 
     public function purchase(array $parameters = array())

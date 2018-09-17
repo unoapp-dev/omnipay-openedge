@@ -37,6 +37,7 @@ class PurchaseRequest extends AbstractRequest
                     $GatewayRequest->addChild('TransactionType', 'CreditSaleTransaction');
 
                     $GatewayRequest->addChild('OrderID', $this->getOrderNumber());
+                    $GatewayRequest->addChild('CurrencyCode', $this->getMerchantCurrency());
                     $GatewayRequest->addChild('Amount', $this->getAmount());
                     $GatewayRequest->addChild('Alias', $this->getCardReference());
 
